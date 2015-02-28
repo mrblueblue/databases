@@ -14,7 +14,7 @@ module.exports = {
     post: function (req, res) {
       var data = req.body;
       models.messages.post(data);
-      res.status(201).send()
+      res.status(201).send();
 
 
 
