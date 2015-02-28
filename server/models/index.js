@@ -2,19 +2,19 @@ var db = require('../db');
 // var bluebird = require('bluebird');
 
 
-
 module.exports = {
   messages: {
-    get: function (callback) {
+    get: function (res) {
 
       db.dbConnection.query('SELECT * FROM messages', function(err, output){
         if(err){
           console.log("SQL didn't get the MSGs")
           throw err;
         }else{
-         callback(JSON.stringify(output));
+          console.log(output);
+         res.status(200).send(JSON.stringify(output));
         }
-      })
+      });
 
 
     }, // a function which produces all the messages

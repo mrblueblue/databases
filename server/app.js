@@ -1,6 +1,7 @@
 var express = require('express');
 var db = require('./db');
 var controllers = require('./controllers');
+var cors = require('cors')
 
 //Connect to SQL Server
 // db.connect();
@@ -14,6 +15,8 @@ var router = require('./routes.js');
 
 var app = express();
 module.exports.app = app;
+
+app.use(cors());
 
 // Set what we are listening on.
 app.set("port", 8080);
