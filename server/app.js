@@ -3,7 +3,7 @@ var db = require('./db');
 var controllers = require('./controllers');
 
 //Connect to SQL Server
-db.connect();
+// db.connect();
 
 // Middleware
 var morgan = require('morgan');
@@ -16,7 +16,7 @@ var app = express();
 module.exports.app = app;
 
 // Set what we are listening on.
-app.set("port", 3000);
+app.set("port", 8080);
 
 // Logging and parsing
 app.use(morgan('dev'));
@@ -25,15 +25,21 @@ app.use(parser.json());
 // Set up our routes
 app.use("/classes", router);
 
-// Serve the client files
-app.use(express.static(__dirname + "/../client"));
-
 // If we are being run directly, run the server.
 if (!module.parent) {
   app.listen(app.get("port"));
   console.log("Listening on", app.get("port"));
 }
+// Serve the client files
+app.use(express.static(__dirname + "/../client"));
 
-app.post('/classes/chatterbox', function (req, res) {
-  controllers.messages.post(req, res);
-});
+
+// app.post('/classes/messages', function (req, res) {
+//   controllers.messages.post(req, res);
+// });
+
+// app.post('/classes/users', function (req, res) {
+//   // console.log(typeof req, "req=", req);
+//   controllers.users.post(req, res);
+// });
+
