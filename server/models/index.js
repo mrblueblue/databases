@@ -5,18 +5,15 @@ var db = require('../db');
 
 module.exports = {
   messages: {
-    get: function (callback) {
-
+    get: function (res) {
       db.dbConnection.query('SELECT * FROM messages', function(err, output){
         if(err){
-          console.log("SQL didn't get the MSGs")
           throw err;
         }else{
-         callback(JSON.stringify(output));
+          output = JSON.stringify(output)
+          res.send(output)
         }
       })
-
-
     }, // a function which produces all the messages
     post: function (parsed) {
 
@@ -37,10 +34,8 @@ module.exports = {
     // Ditto as above.
     get: function () {},
     post: function (parsed) {
-
       var strQuery = "INSERT into users (username) VALUES ('" + parsed.username +"')";
 
-      console.log(strQuery)
       db.dbConnection.query( strQuery, function(err, rows){
         if(err) {
           console.log("SQL ERROR")
