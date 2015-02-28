@@ -1,5 +1,9 @@
 var express = require('express');
 var db = require('./db');
+var controllers = require('./controllers');
+
+//Connect to SQL Server
+db.connect();
 
 // Middleware
 var morgan = require('morgan');
@@ -30,3 +34,6 @@ if (!module.parent) {
   console.log("Listening on", app.get("port"));
 }
 
+app.post('/classes/chatterbox', function (req, res) {
+  controllers.messages.post(req, res);
+});
