@@ -5,15 +5,11 @@ var db = require('../db');
 module.exports = {
   messages: {
     get: function (res) {
-<<<<<<< HEAD
-
-=======
->>>>>>> 2d4907a772658acbae6c39f5508cee60101dd1ec
       db.dbConnection.query('SELECT * FROM messages', function(err, output){
         if(err){
           throw err;
         }else{
-<<<<<<< HEAD
+
           console.log(output);
          res.status(200).send(JSON.stringify(output));
         }
